@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://xmyvauemrpgytkrfhnrn.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhteXZhdWVtcnBneXRrcmZobnJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3MjYwNTgsImV4cCI6MjA2OTMwMjA1OH0.S8TQ8Lv2JvqI5HeidZE_B9N4Ht7A7i_jxJjq8GuQmaM'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Test database connection
 export async function testConnection() {
