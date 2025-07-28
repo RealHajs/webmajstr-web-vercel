@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 export default function GDPRPage() {
   return (
     <div className="min-h-screen">

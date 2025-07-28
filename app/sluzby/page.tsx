@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check, Globe, Share2, Search, Megaphone, Palette, Car, Gamepad2, Server, LinkIcon } from "lucide-react"
