@@ -8,7 +8,7 @@ export default function ServicesPage() {
     {
       name: "Standardní balíček",
       price: "1 990 Kč/měsíc",
-      features: ["Správa webu", "Základní SEO optimalizace", "Správa jedné sociální sítě", "Online podpora"],
+      features: ["VYTVOŘENÍ WEBOVÉ STRÁNKY NA MÍRU", "Základní SEO optimalizace", "Správa jedné sociální sítě", "Online podpora"],
       popular: false,
     },
     {
@@ -26,7 +26,7 @@ export default function ServicesPage() {
     },
     {
       name: "Pro velké firmy / korporáty",
-      price: "7 990 Kč/měsíc",
+      price: "6 990 Kč/měsíc",
       features: [
         "Vše z rozšířeného balíčku",
         "Správa neomezeného počtu sociálních sítí",

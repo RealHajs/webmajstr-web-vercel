@@ -6,8 +6,33 @@ export default function PricingPage() {
   const services = [
     {
       name: "Tvorba webových stránek",
-      price: "od 6 990 Kč",
+      price: "od 5 000 Kč/stránka",
       description: "Moderní, responzivní webové stránky",
+    },
+    {
+      name: "Celková propagace na internetu",
+      price: "od 1490 Kč/měsíc",
+      description: "Zabezpečený a šifrovaný hosting",
+    },
+    {
+      name: "Nejmodernější SEO a reklama",
+      price: "od 1 490 Kč/stránka",
+      description: "Nejmodernější optimalizace díky AI",
+    },
+    {
+      name: "2D grafika & corporate identity",
+      price: "od 2 990 Kč",
+      description: "Kompletní vizuální identita",
+    },
+    {
+      name: "Reklama na rally autě",
+      price: "ZDARMA v ceně balíčku",
+      description: "Vaše logo na RALLY autě !",
+    },
+    {
+      name: "Reklama v e-sportu",
+      price: "ZDARMA v ceně balíčku",
+      description: "Marketing v herním světě sportu",
     },
     {
       name: "Správa sociálních sítí",
@@ -15,34 +40,9 @@ export default function PricingPage() {
       description: "Komplexní správa všech platforem",
     },
     {
-      name: "SEO strategie s AI",
-      price: "od 3 990 Kč",
-      description: "Nejmodernější optimalizace",
-    },
-    {
-      name: "2D grafika a corporate identity",
-      price: "od 2 990 Kč",
-      description: "Kompletní vizuální identita",
-    },
-    {
-      name: "Reklama na rally autě",
-      price: "od 6 000 Kč/měsíc",
-      description: "Unikátní fyzická propagace",
-    },
-    {
-      name: "Reklama v e-sportu",
-      price: "od 4 000 Kč/měsíc",
-      description: "Marketing v herním světě",
-    },
-    {
-      name: "Webhosting",
-      price: "od 150 Kč/měsíc",
-      description: "Spolehlivý hosting",
-    },
-    {
-      name: "Doména",
-      price: "od 250 Kč/rok",
-      description: "Registrace a správa domén",
+      name: "Webhosting & doména",
+      price: "od 750 Kč/rok",
+      description: "Webhosting, doména, e-maily i SSL",
     },
   ]
 
@@ -124,7 +124,7 @@ export default function PricingPage() {
                     <strong>Zdarma:</strong>
                   </p>
                   <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
-                    <li>Správa webu</li>
+                    <li>VYTVOŘENÍ WEBOVÉ STRÁNKY NA MÍRU</li>
                     <li>Základní SEO optimalizace</li>
                     <li>Online podpora</li>
                   </ul>
@@ -145,10 +145,11 @@ export default function PricingPage() {
                     <strong>Zdarma:</strong>
                   </p>
                   <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
-                    <li>Vše ze standardního balíčku</li>
+                    <li>VYTVOŘENÍ WEBOVÉ STRÁNKY NA MÍRU</li>
+                    <li>Webhosting a doména</li>
                     <li>Rozšířená SEO optimalizace</li>
                     <li>Grafické práce (2D grafika)</li>
-                    <li>Rychlá podpora</li>
+                    <li>Vše ze standardního balíčku</li>
                   </ul>
                 </div>
               </CardContent>
@@ -158,7 +159,7 @@ export default function PricingPage() {
               <CardHeader>
                 <CardTitle className="text-center">Korporátní balíček</CardTitle>
                 <CardDescription className="text-center text-2xl font-bold text-purple-600">
-                  7 990 Kč/měsíc
+                  6 990 Kč/měsíc
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -167,10 +168,13 @@ export default function PricingPage() {
                     <strong>Zdarma:</strong>
                   </p>
                   <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+                    <li>VYTVOŘENÍ WEBOVÉ STRÁNKY NA MÍRU</li>
+                    <li>Nejmodernější SEO strategie s AI</li>
+                    <li>Placená reklama</li>
                     <li>Vše z rozšířeného balíčku</li>
-                    <li>AI SEO strategie</li>
                     <li>Kompletní corporate identity</li>
-                    <li>Nonstop podpora</li>
+                    <li>Správa sociálních sítí</li>
+                    <li>Nonstop podpora (24/7)</li>
                   </ul>
                 </div>
               </CardContent>
