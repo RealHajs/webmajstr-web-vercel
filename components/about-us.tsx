@@ -1,26 +1,24 @@
+export const dynamic = "force-dynamic";
+
 import { Users, Award, Zap, Heart } from "lucide-react"
 
 export function AboutUs() {
   const benefits = [
-    {
-      icon: Users,
-      title: "Zkušený tým",
-      description: "Profesionálové s dlouholetými zkušenostmi v digitálním marketingu",
-    },
+
     {
       icon: Award,
-      title: "Unikátní přístup",
-      description: "Kombinujeme tradiční marketing s inovativními kanály jako rally a e-sport",
+      title: "Originalita & jedinečnost",
+      description: "Kombinujeme tradiční marketing s inovativními kanály jako rally & e-sport",
     },
     {
       icon: Zap,
-      title: "AI technologie",
-      description: "Využíváme nejmodernější AI nástroje pro SEO a optimalizaci",
+      title: "Umělá inteligence",
+      description: "Využíváme nejmodernější AI nástroje pro maximální SEO & optimalizaci",
     },
     {
       icon: Heart,
       title: "Osobní přístup",
-      description: "Každý klient je pro nás jedinečný, poskytujeme individuální řešení",
+      description: "Každý klient je pro nás jedinečný, a proto poskytujeme řešení na míru.",
     },
   ]
 

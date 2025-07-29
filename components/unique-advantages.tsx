@@ -1,16 +1,18 @@
+export const dynamic = "force-dynamic";
+
 import { Car, Trophy, Users, Brain } from "lucide-react"
 
 export function UniqueAdvantages() {
   const advantages = [
     {
       icon: Car,
-      title: "Reklama na rally autě",
+      title: "Reklama na RALLY autě",
       description: "Jedinečná možnost propagace na závodních autech při rally soutěžích po celé Evropě",
     },
     {
       icon: Trophy,
       title: "Marketing v e-sportu",
-      description: "Propagace přes profesionální e-sportové týmy a turnaje s globálním dosahem",
+      description: "Vaše značka vidět v e-sportu – spolupracujeme s týmy, turnaji i streamery po celém světě",
     },
     {
       icon: Users,
