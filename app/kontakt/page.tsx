@@ -19,7 +19,8 @@ export default function ContactPage() {
     message: "",
   })
 
-const handleSubmit = async (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
     const response = await fetch("https://formspree.io/f/mrbllzpn", {
@@ -47,6 +48,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     alert("Něco se pokazilo při odesílání formuláře.");
   }
 };
+
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
