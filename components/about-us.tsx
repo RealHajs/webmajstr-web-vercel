@@ -16,6 +16,11 @@ export function AboutUs() {
       description: "Využíváme nejmodernější AI nástroje pro maximální SEO & optimalizaci",
     },
     {
+      icon: Users,
+      title: "Reference stojí za námi",
+      description: "Naše výsledky potvrzují spokojení zákazníci.",
+    },
+    {
       icon: Heart,
       title: "Osobní přístup",
       description: "Každý klient je pro nás jedinečný, a proto poskytujeme řešení na míru.",
