@@ -104,9 +104,9 @@ export default function ContactPage() {
                     <p className="text-gray-600">
                       Webmajstr s.r.o.
                       <br />
-                      Hlavní 123
+                      Hybernská 1012/30,
                       <br />
-                      110 00 Praha 1
+                      110 00 (Praha 1)
                     </p>
                   </div>
                 </div>
@@ -282,7 +282,7 @@ export default function ContactPage() {
               </CardHeader>
               <CardContent>
                 <Button size="lg" variant="outline" className="w-full bg-transparent">
-                  Získat kalkulaci
+                  <a href="mailto:info@webmajstr.com">Získat kalkulaci</a>
                 </Button>
               </CardContent>
             </Card>

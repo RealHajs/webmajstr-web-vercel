@@ -19,8 +19,7 @@ export default function GDPRPage() {
 
             <h3>1. Správce osobních údajů</h3>
             <p>
-              Správcem vašich osobních údajů je společnost Webmajstr s.r.o., se sídlem Hlavní 123, 110 00 Praha 1, IČO:
-              ########, zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka ########.
+              Správcem vašich osobních údajů je společnost Webmajstr s.r.o., se sídlem Hybernská 1012/30, Nové Město, 110 00 Praha 1, IČO: 08475822, zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 319141.
             </p>
 
             <h3>2. Kontaktní údaje</h3>
@@ -28,7 +27,7 @@ export default function GDPRPage() {
             <ul>
               <li>E-mail: info@webmajstr.com</li>
               <li>Telefon: +420 721 020 161</li>
-              <li>Poštovní adresa: Webmajstr s.r.o., Hlavní 123, 110 00 Praha 1</li>
+              <li>Poštovní adresa: Webmajstr s.r.o., Hybernská 1012/30, 110 00 Praha 1</li>
             </ul>
 
             <h3>3. Účel zpracování osobních údajů</h3>
