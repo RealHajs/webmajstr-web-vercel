@@ -19,11 +19,35 @@ export default function ContactPage() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    alert("Děkujeme za vaši zprávu! Odpovíme vám do 24 hodin.")
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const response = await fetch("https://formspree.io/f/mrbllzpn", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      alert("Děkujeme za vaši zprávu! Odpovíme vám do 24 hodin.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } else {
+      alert("Došlo k chybě při odesílání. Zkuste to prosím znovu.");
+    }
+  } catch (error) {
+    alert("Něco se pokazilo při odesílání formuláře.");
   }
+};
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
