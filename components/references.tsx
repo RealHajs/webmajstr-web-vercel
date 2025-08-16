@@ -6,28 +6,28 @@ import { ExternalLink } from "lucide-react"
 export function References() {
   const partners = [
     {
-      name: "StreamerCZ",
+      name: "HajsCZE",
       logo: "https://static-cdn.jtvnw.net/jtv_user_pictures/8aef012f-167f-4b9c-b332-f11600c340ce-profile_image-70x70.png",
       country: "CZ",
-      website: "https://twitch.tv/streamercz",
+      website: "https://twitch.tv/hajscze",
     },
     {
-      name: "ProGamer",
-      logo: "/placeholder.svg?height=80&width=120",
-      country: "SK",
-      website: "https://youtube.com/progamer",
+      name: "Targon Cup",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/logo-targon-cup.JPG",
+      country: "CZ/SK",
+      website: "https://targoncup.pro/",
     },
     {
-      name: "TechReviewer",
-      logo: "/placeholder.svg?height=80&width=120",
+      name: ".",
+      logo: "https://www.rezidenceudubu.cz/img/logo-rud-1.png",
       country: "CZ",
-      website: "https://techreviewer.cz",
+      website: "https://rezidenceudubu.cz/",
     },
     {
-      name: "GameMaster",
-      logo: "/placeholder.svg?height=80&width=120",
-      country: "PL",
-      website: "https://gamemaster.pl",
+      name: ".",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/hospudka-pod-rablinu-logo%20(1).jpg",
+      country: "CZ",
+      website: "https://www.hospudkapodrablinu.cz/",
     },
   ]
 

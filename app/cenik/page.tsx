@@ -93,10 +93,14 @@ export default function PricingPage() {
               Pokud chcete znát přesnou cenu na míru, napište nám – kalkulaci připravíme zdarma.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Získat kalkulaci zdarma</Button>
-              <Button size="lg" variant="outline">
-                Kontaktovat nás
-              </Button>
+              <a href="/kontakt">
+                <Button size="lg">Získat kalkulaci zdarma</Button>
+              </a>
+              <a href="/kontakt">
+                <Button size="lg" variant="outline">
+                  Kontaktovat nás
+                </Button>
+              </a>
             </div>
           </div>
         </div>

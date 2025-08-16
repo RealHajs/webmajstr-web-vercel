@@ -28,7 +28,7 @@ export function Packages() {
     },
     {
       name: "Pro velké firmy / korporáty",
-      price: "7 990 Kč/měsíc",
+      price: "6 990 Kč/měsíc",
       features: [
         "Vše z rozšířeného balíčku",
         "Správa neomezeného počtu sociálních sítí",
