@@ -6,26 +6,26 @@ import { ExternalLink } from "lucide-react"
 export function References() {
   const partners = [
     {
-      name: "HajsCZE",
-      logo: "https://static-cdn.jtvnw.net/jtv_user_pictures/8aef012f-167f-4b9c-b332-f11600c340ce-profile_image-70x70.png",
+      name: "V-Home",
+      logo: "https://www.v-home.cz/wp-content/uploads/2018/09/logo66.png",
       country: "CZ",
-      website: "https://twitch.tv/hajscze",
+      website: "https://v-home-bice.vercel.app/",
     },
     {
-      name: "Targon Cup",
-      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/logo-targon-cup.JPG",
+      name: "Motion Roleplay",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/241bf5e4-8a60-4489-b380-c1c4943740c8%20(1).png",
       country: "CZ/SK",
-      website: "https://targoncup.pro/",
+      website: "https://motion-roleplay.com/",
     },
     {
-      name: ".",
-      logo: "https://www.rezidenceudubu.cz/img/logo-rud-1.png",
+      name: "Marian Teplý",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/zednik4-logo.png",
       country: "CZ",
-      website: "https://rezidenceudubu.cz/",
+      website: "https://zednictvi-marian-teply.com/",
     },
     {
-      name: ".",
-      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/hospudka-pod-rablinu-logo%20(1).jpg",
+      name: "Hospůdka pod Rablinů",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/hospudka-pod-rablinu-logo%20(1).png",
       country: "CZ",
       website: "https://www.hospudkapodrablinu.cz/",
     },
