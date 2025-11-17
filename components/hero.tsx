@@ -47,7 +47,7 @@ export function Hero() {
     typeTitle()
   }, [])
 
-  // Výška hero sekce – když budeš chtít změnit, uprav jen hodnotu 45vh
+  // výška hero sekce ≈ 45 % výšky okna – můžeš změnit např. na "min-h-[40vh]" nebo "min-h-[60vh]"
   const heroHeightClass = "min-h-[45vh]"
 
   return (
@@ -57,7 +57,13 @@ export function Hero() {
       {/* Video na pozadí */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
-          className="absolute left-1/2 top-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover opacity-15"
+          className="
+            absolute
+            left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+            min-w-full min-h-full
+            object-cover
+            opacity-15
+          "
           src="/video/bacgkround_webmajstr.mp4"
           autoPlay
           loop
@@ -108,9 +114,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Gradient jako v záloze – plynulý přechod do sekce pod tím */}
-      <div className="absolute bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-whitesmoke to-transparent" />
 
       {/* Chat widget – fixed vpravo dole */}
       <WebmajstrChat />
