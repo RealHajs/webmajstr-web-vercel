@@ -47,12 +47,16 @@ export function Hero() {
     typeTitle()
   }, [])
 
-  // výška hero sekce ≈ 45 % výšky okna – můžeš změnit např. na "min-h-[40vh]" nebo "min-h-[60vh]"
-  const heroHeightClass = "min-h-[55vh]"
-
   return (
     <section
-      className={`relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white py-16 lg:py-24 ${heroHeightClass} overflow-hidden`}
+      className="
+        relative
+        bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
+        text-white
+        py-16 lg:py-24
+        min-h-[45vh]
+        overflow-hidden
+      "
     >
       {/* Video na pozadí */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -62,7 +66,7 @@ export function Hero() {
             left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
             min-w-full min-h-full
             object-cover
-            opacity-35
+            opacity-20
           "
           src="/video/bacgkround_webmajstr.mp4"
           autoPlay
