@@ -4,7 +4,7 @@ import { Hero } from "@/components/hero"
 import { AboutUs } from "@/components/about-us"
 import { Services } from "@/components/services"
 import { UniqueAdvantages } from "@/components/unique-advantages"
-import { Packages } from "@/components/packages"
+// import { Packages } from "@/components/packages"
 import { References } from "@/components/references"
 import News from "@/components/news"
 import { CTABlocks } from "@/components/cta-blocks"
@@ -16,7 +16,7 @@ export default async function HomePage() {
       <AboutUs />
       <Services />
       <UniqueAdvantages />
-      <Packages />
+      {/* <Packages /> */}
       <References />
       <News />
       <CTABlocks />
