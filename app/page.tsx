@@ -1,15 +1,14 @@
 // app/page.tsx
+
 export const dynamic = "force-dynamic"
 
-// ❗ Všechno přes relativní cesty a správné názvy souborů
-import { Hero } from "../components/Hero"
-import { AboutUs } from "../components/about-us"
-import { Services } from "../components/services"
-import { UniqueAdvantages } from "../components/unique-advantages"
-import { Packages } from "../components/packages"
-import News from "../components/news"
-import { CTABlocks } from "../components/cta-blocks"
-// Chat je už uvnitř <Hero />, takže ho tady znovu NEimportujeme
+import Hero from "@/components/Hero"
+import { AboutUs } from "@/components/about-us"
+import { Services } from "@/components/services"
+import { UniqueAdvantages } from "@/components/unique-advantages"
+import { Packages } from "@/components/packages"
+import News from "@/components/news"
+import { CTABlocks } from "@/components/cta-blocks"
 
 export const metadata = {
   title: "Webmajstr – váš partner pro digitální růst",
@@ -25,7 +24,6 @@ export default function HomePage() {
       <Services />
       <UniqueAdvantages />
       <Packages />
-      {/* Pokud ještě nechceš tahat novinky ze Supabase, tenhle řádek můžeš dočasně vykomentovat */}
       <News />
       <CTABlocks />
     </main>

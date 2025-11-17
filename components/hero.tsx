@@ -1,83 +1,75 @@
-"use client";
+// components/Hero.tsx
+"use client"
 
-export const dynamic = "force-dynamic";
+import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Users } from "lucide-react"
+import { WebmajstrChat } from "@/components/WebmajstrChat"
 
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Users } from "lucide-react";
-import { WebmajstrChat } from "@/components/WebmajstrChat";
-
-export function Hero() {
-  const [titleText, setTitleText] = useState("");
-  const [subtitleText, setSubtitleText] = useState("");
-  const [isTypingTitle, setIsTypingTitle] = useState(true);
-  const [isTypingSubtitle, setIsTypingSubtitle] = useState(false);
+export default function Hero() {
+  const [titleText, setTitleText] = useState("")
+  const [subtitleText, setSubtitleText] = useState("")
+  const [isTypingTitle, setIsTypingTitle] = useState(true)
+  const [isTypingSubtitle, setIsTypingSubtitle] = useState(false)
 
   useEffect(() => {
-    const title = "Váš digitální růst začíná u nás";
+    const title = "Váš digitální růst začíná u nás"
     const subtitle =
-      "Tvorba a propagace webových stránek, reklama v rally a mnoho dalšího pouze u nás!";
+      "Tvorba a propagace webových stránek, reklama v rally a mnoho dalšího pouze u nás!"
 
-    let titleIndex = 0;
-    let subtitleIndex = 0;
+    let titleIndex = 0
+    let subtitleIndex = 0
 
     const typeSubtitle = () => {
       if (subtitleIndex <= subtitle.length) {
-        setSubtitleText(subtitle.slice(0, subtitleIndex));
-        subtitleIndex++;
-        setTimeout(typeSubtitle, 25);
+        setSubtitleText(subtitle.slice(0, subtitleIndex))
+        subtitleIndex++
+        setTimeout(typeSubtitle, 25) // rychlejší animace pro podtitul
       } else {
-        setIsTypingSubtitle(false);
+        setIsTypingSubtitle(false)
       }
-    };
+    }
 
     const typeTitle = () => {
       if (titleIndex <= title.length) {
-        setTitleText(title.slice(0, titleIndex));
-        titleIndex++;
-        setTimeout(typeTitle, 70);
+        setTitleText(title.slice(0, titleIndex))
+        titleIndex++
+        setTimeout(typeTitle, 70)
       } else {
-        setIsTypingTitle(false);
-        setIsTypingSubtitle(true);
-        setTimeout(typeSubtitle, 300);
+        setIsTypingTitle(false)
+        setIsTypingSubtitle(true)
+        setTimeout(typeSubtitle, 300)
       }
-    };
+    }
 
-    typeTitle();
-  }, []);
+    typeTitle()
+  }, [])
 
   return (
     <section
-      className="
-        relative 
-        bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 
-        text-white 
-        py-20 lg:py-40 
-        overflow-hidden
-        h-[45vh] lg:h-[45vh]  /* ↑ výška hero sekce – změň % podle potřeby */
-      "
+      className="relative text-white overflow-hidden"
+      style={{ minHeight: "45vh" }} // 👉 tady si můžeš měnit výšku (např. 0.6 * vh = 60 %, 0.8 = 80 %)
     >
-      {/* Video v pozadí */}
-      <video
-        className="
-          pointer-events-none 
-          absolute inset-0 
-          w-full h-full 
-          object-cover 
-          opacity-[0.15]   /* ↓ viditelnost videa (0–1) – můžeš dál snížit/zvýšit */
-        "
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src="/video/bacgkround_webmajstr.mp4" type="video/mp4" />
-      </video>
+      {/* Fialový gradient – trochu ztmavený */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900" />
 
-      {/* Fialový overlay – lehce ztmavený */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-purple-900/90 to-slate-900/95" />
+      {/* Video background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <video
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.06]" // průhlednost videa
+          src="/video/bacgkround_webmajstr.mp4" // musí sedět přesně na název souboru v /public/video
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      </div>
 
-      <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
+      {/* Tmavý overlay, aby byl text čitelný */}
+      <div className="absolute inset-0 bg-black/35" />
+
+      {/* Obsah */}
+      <div className="relative z-10 container mx-auto px-4 py-20 lg:py-32">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             {titleText}
@@ -117,8 +109,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Chat widget – fixed vpravo dole */}
+      {/* Chat widget – fixní vpravo dole */}
       <WebmajstrChat />
     </section>
-  );
+  )
 }
