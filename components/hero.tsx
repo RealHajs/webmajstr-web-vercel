@@ -48,7 +48,7 @@ export function Hero() {
   }, [])
 
   // výška hero sekce ≈ 45 % výšky okna – můžeš změnit např. na "min-h-[40vh]" nebo "min-h-[60vh]"
-  const heroHeightClass = "min-h-[45vh]"
+  const heroHeightClass = "min-h-[55vh]"
 
   return (
     <section
