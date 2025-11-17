@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { Hero } from "@/components/Hero"
+
 import { AboutUs } from "@/components/about-us"
 import { Services } from "@/components/services"
 import { UniqueAdvantages } from "@/components/unique-advantages"
@@ -11,7 +12,13 @@ import { CTABlocks } from "@/components/cta-blocks"
 import { WebmajstrChat } from "@/components/WebmajstrChat"
 
 
-export default async function HomePage() {
+export const metadata = {
+  title: "Webmajstr – váš partner pro digitální růst",
+  description:
+    "Komplexní webové řešení, SEO, AI, reklama na rally autě a v e-sportu. Tvorba webu, správa sociálních sítí a online marketing na míru.",
+}
+
+export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Hero />
@@ -25,11 +32,4 @@ export default async function HomePage() {
       <CTABlocks />
     </main>
   )
-}
-
-export const metadata = {
-  title: "Webmajstr - Váš partner pro digitální růst",
-  description:
-    "Komplexní webové řešení, SEO s AI, reklama na rally autě a v e-sportu. Tvorba webů, správa sociálních sítí a unikátní marketingové kanály.",
-  keywords: "webmajstr, tvorba webů, SEO, AI, rally reklama, e-sport marketing, sociální sítě",
 }

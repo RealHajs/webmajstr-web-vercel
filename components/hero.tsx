@@ -57,7 +57,7 @@ export function Hero() {
         {/* Background video přes celou šířku/výšku sekce */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <video
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-30"
             // Opacity videa:
             // - aktuálně 30 % (opacity-30)
             // - zvýšíš/snížíš změnou na opacity-20, opacity-40, ...
