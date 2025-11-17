@@ -1,8 +1,9 @@
 // app/page.tsx
+"use client"
 
 export const dynamic = "force-dynamic"
 
-import Hero from "@/components/Hero"
+import { Hero } from "@/components/Hero"
 import { AboutUs } from "@/components/about-us"
 import { Services } from "@/components/services"
 import { UniqueAdvantages } from "@/components/unique-advantages"

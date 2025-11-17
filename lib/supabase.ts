@@ -1,3 +1,4 @@
+// lib/supabase.ts
 import { createClient } from "@supabase/supabase-js"
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string
@@ -103,6 +104,18 @@ export async function getNewsArticle(id: number) {
     .from("news")
     .select("*")
     .eq("id", id)
+    .single()
+
+  if (error) throw error
+  return data
+}
+
+/** NOVÁ FUNKCE – podle slug pro /aktuality/[slug] */
+export async function getNewsBySlug(slug: string) {
+  const { data, error } = await supabase
+    .from("news")
+    .select("*")
+    .eq("slug", slug)
     .single()
 
   if (error) throw error

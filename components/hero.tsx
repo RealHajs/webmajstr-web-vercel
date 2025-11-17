@@ -1,12 +1,14 @@
 // components/Hero.tsx
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Users } from "lucide-react"
 import { WebmajstrChat } from "@/components/WebmajstrChat"
 
-export default function Hero() {
+export function Hero() {
   const [titleText, setTitleText] = useState("")
   const [subtitleText, setSubtitleText] = useState("")
   const [isTypingTitle, setIsTypingTitle] = useState(true)
@@ -47,45 +49,53 @@ export default function Hero() {
 
   return (
     <section
-      className="relative text-white overflow-hidden"
-      style={{ minHeight: "45vh" }} // 👉 tady si můžeš měnit výšku (např. 0.6 * vh = 60 %, 0.8 = 80 %)
+      className="
+        relative
+        bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
+        text-white
+        py-16 lg:py-24
+        min-h-[45vh]   /* výška hero sekce ≈ 45 % výšky okna – můžeš změnit např. na 40vh / 60vh */
+        overflow-hidden
+      "
     >
-      {/* Fialový gradient – trochu ztmavený */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900" />
-
-      {/* Video background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Video na pozadí */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.06]" // průhlednost videa
-          src="/video/bacgkround_webmajstr.mp4" // musí sedět přesně na název souboru v /public/video
+          className="
+            absolute
+            left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+            min-w-full min-h-full
+            object-cover
+            opacity-15   /* průhlednost videa – menší číslo = méně viditelné */
+          "
+          src="/video/bacgkround_webmajstr.mp4"
           autoPlay
-          muted
           loop
+          muted
           playsInline
         />
       </div>
 
-      {/* Tmavý overlay, aby byl text čitelný */}
-      <div className="absolute inset-0 bg-black/35" />
+      {/* Fialový překryv – lehce ztmavený */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-purple-900/90 to-slate-900/95" />
 
-      {/* Obsah */}
-      <div className="relative z-10 container mx-auto px-4 py-20 lg:py-32">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mx-auto max-w-6xl text-center">
+          <h1 className="mb-6 text-4xl font-bold leading-tight lg:text-6xl">
             {titleText}
             {(isTypingTitle || isTypingSubtitle) && (
-              <span className="inline-block w-[1px] bg-white ml-1 animate-pulse h-[1em] align-middle" />
+              <span className="ml-1 inline-block h-[1em] w-[1px] animate-pulse bg-white align-middle" />
             )}
           </h1>
 
-          <p className="text-xl lg:text-2xl mb-8 text-gray-300 min-h-[3rem]">
+          <p className="mb-8 min-h-[3rem] text-xl text-gray-300 lg:text-2xl">
             {subtitleText}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4">
+          <div className="mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-4"
+              className="bg-purple-600 px-8 py-4 text-lg hover:bg-purple-700"
               asChild
             >
               <a href="/kontakt">
@@ -97,7 +107,7 @@ export default function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white/60 text-black hover:bg-white/10 text-lg px-8 py-4"
+              className="border-white/60 px-8 py-4 text-lg text-black hover:bg-white/10"
               asChild
             >
               <a href="/spoluprace">
@@ -109,7 +119,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Chat widget – fixní vpravo dole */}
+      {/* Chat widget – fixed vpravo dole */}
       <WebmajstrChat />
     </section>
   )
