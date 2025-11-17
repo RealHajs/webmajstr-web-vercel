@@ -1,6 +1,18 @@
 import { notFound } from "next/navigation"
+import type { Metadata } from "next"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Instagram, Youtube, Twitter, Facebook, Twitch, Music } from "lucide-react"
+import {
+  ExternalLink,
+  Instagram,
+  Youtube,
+  Twitter,
+  Facebook,
+  Twitch,
+  Music,
+  Globe,
+} from "lucide-react"
+
+import { getPartners } from "@/lib/supabase"
 
 interface Partner {
   id: number
@@ -12,192 +24,250 @@ interface Partner {
   bio?: string
   social_links?: any
   logo_url?: string
-  profile_image_url?: string
+  profile_image_url?: string // zůstává v typu, ale NIKDE ji nevykreslujeme
   is_active: boolean
   sort_order?: number
   created_at?: string
   updated_at?: string
 }
 
-import { getPartners } from '@/lib/supabase'
-
-// Funkce pro načtení konkrétního partnera
+// Načtení konkrétního partnera
 async function getPartner(slug: string): Promise<Partner | null> {
-  const partners = await getPartners()
+  const partners = (await getPartners()) as Partner[]
   return partners.find((p) => p.slug === slug && p.is_active) || null
 }
 
-// Generování statických cest pro všechny aktivní partnery
+// Statické cesty pro všechny aktivní partnery
 export async function generateStaticParams() {
-  const partners = await getPartners()
+  const partners = (await getPartners()) as Partner[]
   return partners
-    .filter(partner => partner.is_active)
+    .filter((partner) => partner.is_active)
     .map((partner) => ({
       slug: partner.slug,
     }))
 }
 
-export default async function PartnerPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+const getSocialIcon = (platform: string) => {
+  switch (platform) {
+    case "instagram":
+      return Instagram
+    case "youtube":
+      return Youtube
+    case "twitter":
+      return Twitter
+    case "facebook":
+      return Facebook
+    case "twitch":
+      return Twitch
+    case "tiktok":
+      return Music
+    default:
+      return ExternalLink
+  }
+}
+
+export default async function PartnerPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
+  const { slug } = params
   const partner = await getPartner(slug)
-  
+
   if (!partner) notFound()
 
-  const getSocialIcon = (platform: string) => {
-    switch (platform) {
-      case "instagram":
-        return Instagram
-      case "youtube":
-        return Youtube
-      case "twitter":
-        return Twitter
-      case "facebook":
-        return Facebook
-      case "twitch":
-        return Twitch
-      case "tiktok":
-        return Music
-      default:
-        return ExternalLink
-    }
-  }
-
-  // Výchozí barvy pro partnery
-  const defaultColors = {
-    backgroundColor: "#7c3aed",
-    textColor: "#ffffff"
-  }
-
-  // Parsování social links
-  const socialLinks = partner.social_links ? 
-    (typeof partner.social_links === 'string' ? JSON.parse(partner.social_links) : partner.social_links) 
+  // Parsování social_links
+  const socialLinks = partner.social_links
+    ? typeof partner.social_links === "string"
+      ? JSON.parse(partner.social_links)
+      : partner.social_links
     : {}
 
   return (
-    <div
-      className="min-h-screen"
-      style={{
-        backgroundColor: defaultColors.backgroundColor,
-        color: defaultColors.textColor,
-      }}
-    >
-      {/* Hero Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-8">
-              <img
-                src={partner.logo_url || "/placeholder.svg"}
-                alt={`${partner.name} logo`}
-                className="h-24 w-auto mx-auto mb-6 object-contain"
-              />
-              <img
-                src={partner.profile_image_url || "/placeholder.svg"}
-                alt={`${partner.name} profile`}
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-white/20"
-              />
-            </div>
-
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4">{partner.name}</h1>
-            <p className="text-xl opacity-90 mb-2">@{partner.nick}</p>
-            <p className="text-lg opacity-75 mb-8">{partner.country}</p>
-
-            <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed">{partner.bio}</p>
-
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-white/20 hover:bg-white/30 text-white border-white/30"
-              asChild
-            >
-              <a href={partner.website_url || "#"} target="_blank" rel="noopener noreferrer">
-                Navštívit hlavní kanál
-                <ExternalLink className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
+    <div className="min-h-screen bg-gray-50">
+      {/* HERO */}
+      <section className="bg-gradient-to-br from-purple-600 to-purple-800 text-white py-16">
+        <div className="w-full mx-auto px-4 lg:w-[70%]">
+          <p className="text-purple-200 text-sm mb-3">Spolupráce</p>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-3">
+            {partner.name}
+          </h1>
+          <div className="flex flex-wrap items-center gap-3 text-sm text-purple-100">
+            {partner.country && (
+              <span className="inline-flex items-center rounded-full bg-purple-500/20 px-3 py-1 border border-purple-300/40">
+                {partner.country}
+              </span>
+            )}
+            {partner.nick && (
+              <span className="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1">
+                @{partner.nick}
+              </span>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Social Links */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-12">Sledujte mě na</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {Object.entries(socialLinks).map(([platform, url]) => {
-                const Icon = getSocialIcon(platform)
-                return (
-                  <Button
-                    key={platform}
-                    variant="outline"
-                    size="lg"
-                    className="bg-white/10 hover:bg-white/20 border-white/30 text-white h-16"
-                    asChild
-                  >
-                    <a href={url as string} target="_blank" rel="noopener noreferrer">
-                      <Icon className="h-6 w-6 mr-3" />
-                      <span className="capitalize">{platform}</span>
+      {/* OBSAH */}
+      <section className="py-12">
+        <div className="w-full mx-auto px-4 lg:w-[70%] space-y-8">
+          {/* ZÁKLADNÍ INFO */}
+          <div className="bg-white rounded-2xl shadow-md p-6 md:p-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-4">
+              <div className="flex items-center gap-4">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-50 overflow-hidden">
+                  <img
+                    src={partner.logo_url || "/placeholder.svg"}
+                    alt={partner.name}
+                    className="max-h-16 max-w-full object-contain"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-semibold mb-1">
+                    {partner.name}
+                  </h2>
+                  {partner.country && (
+                    <p className="text-sm text-gray-500">{partner.country}</p>
+                  )}
+                  {partner.nick && (
+                    <p className="text-sm text-gray-500">@{partner.nick}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                {partner.website_url && (
+                  <Button variant="outline" asChild>
+                    <a
+                      href={partner.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Globe className="mr-2 h-4 w-4" />
+                      Web partnera
                     </a>
                   </Button>
-                )
-              })}
+                )}
+                <Button variant="ghost" asChild>
+                  <a href="/spoluprace">← Zpět na přehled spoluprací</a>
+                </Button>
+              </div>
+            </div>
+
+            {partner.bio && (
+              <div className="mt-4 text-base text-gray-800 leading-relaxed">
+                {partner.bio.split("\n\n").map((para, idx) => (
+                  <p key={idx} className={idx > 0 ? "mt-4" : ""}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-8 pt-4 border-t text-xs text-gray-500 flex flex-wrap gap-2 justify-between">
+              {partner.created_at && (
+                <span>
+                  Spolupráce od:{" "}
+                  {new Date(partner.created_at).toLocaleDateString("cs-CZ")}
+                </span>
+              )}
+              {partner.updated_at && (
+                <span>
+                  Poslední aktualizace:{" "}
+                  {new Date(partner.updated_at).toLocaleDateString("cs-CZ")}
+                </span>
+              )}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Contact/Collaboration */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Spolupráce</h2>
-            <p className="text-lg opacity-90 mb-8">
-              Máte zájem o spolupráci nebo reklamu? Kontaktujte mě přes mé sociální sítě nebo přímo přes Webmajstr.
+          {/* SOCIÁLNÍ SÍTĚ */}
+          {Object.keys(socialLinks).length > 0 && (
+            <div className="bg-white rounded-2xl shadow-md p-6 md:p-8">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-xl font-semibold">
+                    Kanály &amp; sociální sítě
+                  </h3>
+                  <p className="text-sm text-gray-500">
+                    Sledujte partnera tam, kde je nejaktivnější.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {Object.entries(socialLinks).map(([platform, url]) => {
+                  const Icon = getSocialIcon(platform)
+                  return (
+                    <Button
+                      key={platform}
+                      variant="outline"
+                      size="lg"
+                      className="justify-start h-12"
+                      asChild
+                    >
+                      <a
+                        href={url as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon className="h-5 w-5 mr-3" />
+                        <span className="capitalize">{platform}</span>
+                      </a>
+                    </Button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* SPOLUPRÁCE / KONTAKT */}
+          <div className="bg-white rounded-2xl shadow-md p-6 md:p-8">
+            <h3 className="text-xl font-semibold mb-3">Spolupráce</h3>
+            <p className="text-gray-700 mb-6">
+              Máte zájem o společnou kampaň nebo dlouhodobější spolupráci?
+              Napište nám a připravíme vám konkrétní návrh na míru.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                variant="secondary"
-                className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                className="sm:flex-1"
                 asChild
               >
-                <a href="mailto:info@webmajstr.com">Kontaktovat přes Webmajstr</a>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-transparent hover:bg-white/10 border-white/30 text-white"
-                asChild
-              >
-                <a href={partner.website_url || "#"} target="_blank" rel="noopener noreferrer">
-                  Přímý kontakt
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                <a href="mailto:info@webmajstr.com">
+                  Kontaktovat přes Webmajstr
                 </a>
               </Button>
+              {partner.website_url && (
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="sm:flex-1"
+                  asChild
+                >
+                  <a
+                    href={partner.website_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Přímý kontakt
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              )}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Footer with Webmajstr branding */}
-      <section className="py-8 bg-black/20 border-t border-white/20">
-        <div className="container mx-auto px-4 text-center">
-          <p className="opacity-75">
-            Stránka vytvořena a spravována společností{" "}
-            <a href="/" className="font-semibold hover:underline">
-              Webmajstr s.r.o.
-            </a>
-          </p>
         </div>
       </section>
     </div>
   )
 }
 
-// Pro Next.js App router – generateMetadata musí být async
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+// Metadata pro App Router
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const { slug } = params
   const partner = await getPartner(slug)
 
   if (!partner) {
@@ -207,8 +277,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: `${partner.name} (@${partner.nick}) - Webmajstr Partner`,
+    title: `${partner.name}${
+      partner.nick ? ` (@${partner.nick})` : ""
+    } - Webmajstr Partner`,
     description: partner.bio,
-    keywords: `webmajstr ${partner.nick}, ${partner.name}, streamer, ${partner.country}, gaming`,
+    keywords: `webmajstr ${partner.nick || ""}, ${partner.name}, streamer, ${
+      partner.country || ""
+    }, gaming`,
   }
 }

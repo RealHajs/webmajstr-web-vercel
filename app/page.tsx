@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { Hero } from "@/components/hero"
+import { Hero } from "@/components/Hero"
 import { AboutUs } from "@/components/about-us"
 import { Services } from "@/components/services"
 import { UniqueAdvantages } from "@/components/unique-advantages"
@@ -8,16 +8,19 @@ import { Packages } from "@/components/packages"
 import { References } from "@/components/references"
 import News from "@/components/news"
 import { CTABlocks } from "@/components/cta-blocks"
+import { WebmajstrChat } from "@/components/WebmajstrChat"
+
 
 export default async function HomePage() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <WebmajstrChat />
       <AboutUs />
       <Services />
       <UniqueAdvantages />
       <Packages />
-      <References />
+      {/* <References /> */}
       <News />
       <CTABlocks />
     </main>
