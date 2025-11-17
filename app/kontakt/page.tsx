@@ -1,6 +1,6 @@
 "use client"
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic"
 
 import type React from "react"
 import { useState } from "react"
@@ -19,37 +19,34 @@ export default function ContactPage() {
     message: "",
   })
 
-
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  try {
-    const response = await fetch("https://formspree.io/f/mrbllzpn", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    });
+    e.preventDefault()
+    try {
+      const response = await fetch("https://formspree.io/f/mrbllzpn", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
 
-    if (response.ok) {
-      alert("Děkujeme za vaši zprávu! Odpovíme vám do 24 hodin.");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    } else {
-      alert("Došlo k chybě při odesílání. Zkuste to prosím znovu.");
+      if (response.ok) {
+        alert("Děkujeme za vaši zprávu! Odpovíme vám do 24 hodin.")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        })
+      } else {
+        alert("Došlo k chybě při odesílání. Zkuste to prosím znovu.")
+      }
+    } catch (error) {
+      alert("Něco se pokazilo při odesílání formuláře.")
     }
-  } catch (error) {
-    alert("Něco se pokazilo při odesílání formuláře.");
   }
-};
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -244,7 +241,9 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-6">Rychlé akce</h2>
-            <p className="text-lg text-gray-600">Potřebujete rychlou pomoc? Vyberte si nejrychlejší způsob kontaktu</p>
+            <p className="text-lg text-gray-600">
+              Potřebujete rychlou pomoc? Vyberte si nejrychlejší způsob kontaktu
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">

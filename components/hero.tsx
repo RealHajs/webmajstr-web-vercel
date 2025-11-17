@@ -62,7 +62,7 @@ export function Hero() {
             left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
             min-w-full min-h-full
             object-cover
-            opacity-25
+            opacity-35
           "
           src="/video/bacgkround_webmajstr.mp4"
           autoPlay
