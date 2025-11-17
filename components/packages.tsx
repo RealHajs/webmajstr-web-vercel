@@ -79,7 +79,7 @@ export function Packages() {
               </CardContent>
               <CardFooter>
                 <Button className="w-full" variant={pkg.popular ? "default" : "outline"}>
-                  <a href="/kontakt">Vybrat balíček</a>
+                  Vybrat balíček
                 </Button>
               </CardFooter>
             </Card>

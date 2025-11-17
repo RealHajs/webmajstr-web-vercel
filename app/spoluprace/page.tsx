@@ -1,112 +1,90 @@
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ExternalLink, Phone, Mail } from "lucide-react"
-
-import { getPartners } from "@/lib/supabase"
 
 interface Partner {
   id: number
   name: string
+  nick?: string
   slug: string
   country?: string
   website_url?: string
   bio?: string
+  social_links?: any
   logo_url?: string
+  profile_image_url?: string
   is_active: boolean
   sort_order?: number
   created_at?: string
   updated_at?: string
 }
 
+import { getPartners } from '@/lib/supabase'
+
 export default async function PartnershipsPage() {
-  const partners = (await getPartners()) as Partner[]
+  const partners = await getPartners()
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* HERO */}
+    <div className="min-h-screen">
+      {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 to-purple-800 text-white py-20">
-        <div className="w-full mx-auto px-4 lg:w-[70%] text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Naše spolupráce
-          </h1>
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">Naše spolupráce</h1>
           <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-            Spolupracujeme s předními streamery, influencery a brandy z celé
-            Evropy. Společně tvoříme obsah, který dává smysl.
+            Spolupracujeme s předními streamery, influencery a content creatorsry z celé Evropy
           </p>
         </div>
       </section>
 
-      {/* PARTNEŘI */}
-      <section className="py-16">
-        <div className="w-full mx-auto px-4 lg:w-[70%]">
-          <div className="mb-10">
-            <h2 className="text-2xl lg:text-3xl font-bold mb-3">
-              Aktuální spolupráce
-            </h2>
-            <p className="text-gray-600">
-              Přehled značek, tvůrců a projektů, se kterými dlouhodobě
-              spolupracujeme.
-            </p>
+      {/* Partners Grid */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Aktuální spolupráce</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Přehled všech našich partnerů a spolupracovníků</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {partners.map((partner) => (
-              <Card
-                key={partner.id}
-                className="hover:shadow-lg transition-shadow bg-white flex flex-col"
-              >
-                <CardHeader className="flex-row items-center gap-4 p-6 pb-3">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gray-50 overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {partners.map((partner, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
                     <img
                       src={partner.logo_url || "/placeholder.svg"}
-                      alt={partner.name}
-                      className="max-h-14 max-w-full object-contain"
+                      alt={`${partner.name} logo`}
+                      className="h-16 w-auto object-contain"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <CardTitle className="text-xl">{partner.name}</CardTitle>
-                    {partner.country && (
-                      <CardDescription className="mt-1">
-                        {partner.country}
-                      </CardDescription>
-                    )}
-                  </div>
+                  <CardTitle className="text-xl">{partner.name}</CardTitle>
+                  <CardDescription className="text-purple-600 font-medium">
+                    @{partner.nick} • {partner.country}
+                  </CardDescription>
                 </CardHeader>
-
-                <CardContent className="flex-1 p-6 pt-2">
-                  {partner.bio && (
-                    <p className="text-sm text-gray-700 text-left leading-relaxed">
-                      {partner.bio}
-                    </p>
-                  )}
-                </CardContent>
-
-                <CardContent className="p-6 pt-0 flex flex-wrap gap-3">
-                  <Button size="sm" asChild>
-                    <Link href={`/${partner.slug}`}>Zobrazit profil</Link>
-                  </Button>
-
-                  {partner.website_url && (
-                    <Button size="sm" variant="outline" asChild>
-                      <a
-                        href={partner.website_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                <CardContent className="text-center">
+                  <div className="mb-4">
+                    <img
+                      src={partner.profile_image_url || "/placeholder.svg"}
+                      alt={`${partner.name} profile`}
+                      className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
+                    />
+                    <p className="text-gray-600 text-sm">{partner.bio}</p>
+                  </div>
+                  <div className="flex space-x-2">
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={`/${partner.slug}`}>
+                        Zobrazit profil
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={partner.website_url || "#"} target="_blank" rel="noopener noreferrer">
                         Otevřít web
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </a>
                     </Button>
-                  )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -114,81 +92,53 @@ export default async function PartnershipsPage() {
         </div>
       </section>
 
-      {/* KONTAKT – SPOLUPRÁCE */}
-      {/* <section className="py-16 bg-gray-50">
-        <div className="w-full mx-auto px-4 lg:w-[70%]">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-5">
-              Máte zájem o spolupráci?
-            </h2>
+      {/* Contact for Partnership */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Máte zájem o spolupráci?</h2>
             <p className="text-lg text-gray-600 mb-8">
-              Hledáme nové partnery a influencery, se kterými budeme moct
-              dlouhodobě růst. Ozvěte se nám a připravíme pro vás konkrétní
-              návrh spolupráce.
+              Hledáme nové partnery a influencery pro vzájemně výhodnou spolupráci. Kontaktujte nás a promluvme si o
+              možnostech.
             </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            <Card>
-              <CardHeader className="text-left">
-                <Phone className="h-8 w-8 text-purple-600 mb-3" />
-                <CardTitle>Zavolejte nám</CardTitle>
-                <CardDescription>
-                  Nejrychlejší cesta, jak si říct první nápady.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-left">
-                <p className="text-2xl font-bold text-purple-600 mb-4">
-                  +420 721 020 161
-                </p>
-                <Button className="w-full" asChild>
-                  <a href="tel:+420721020161">Zavolat nyní</a>
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <Card>
+                <CardHeader className="text-center">
+                  <Phone className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                  <CardTitle>Zavolejte nám</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-2xl font-bold text-purple-600 mb-4">+420 721 020 161</p>
+                  <Button className="w-full">Zavolat nyní</Button>
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader className="text-left">
-                <Mail className="h-8 w-8 text-purple-600 mb-3" />
-                <CardTitle>Napište nám</CardTitle>
-                <CardDescription>
-                  Pošlete nám pár vět o sobě a vaší komunitě.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-left">
-                <p className="text-lg font-semibold text-purple-600 mb-4">
-                  info@webmajstr.com
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full bg-transparent"
-                  asChild
-                >
-                  <a href="mailto:info@webmajstr.com">Napsat e-mail</a>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+              <Card>
+                <CardHeader className="text-center">
+                  <Mail className="h-12 w-12 text-purple-600 mx-auto mb-4" />
+                  <CardTitle>Napište nám</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-lg font-semibold text-purple-600 mb-4">info@webmajstr.com</p>
+                  <Button variant="outline" className="w-full bg-transparent">
+                    Napsat e-mail
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
 
-          <Card className="bg-white">
-            <CardHeader className="pb-2">
-              <CardTitle>Chcete raději formulář?</CardTitle>
-              <CardDescription>
-                Stačí pár údajů – ozveme se vám zpět s návrhem spolupráce.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="pt-0">
+            <div className="bg-white p-8 rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">Nebo vyplňte kontaktní formulář</h3>
               <p className="text-gray-600 mb-6">
-                V případě zájmu o spolupráci nás můžete kontaktovat na
-                <span className="font-semibold"> +420 721 020 161</span> nebo na{" "}
-                <span className="font-semibold">info@webmajstr.com</span>, nebo
-                využijte náš kontaktní formulář.
+                V případě zájmu o spolupráci nás kontaktujte na +420 721 020 161 nebo na info@webmajstr.com, případně
+                vyplňte náš kontaktní formulář.
               </p>
               <Button size="lg">Vyplnit formulář</Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
-      </section> */}
+      </section>
     </div>
   )
 }

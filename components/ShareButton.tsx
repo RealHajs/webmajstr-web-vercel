@@ -28,6 +28,7 @@ export function ShareButton({ url, title }: ShareButtonProps) {
         alert("Sdílení není v tomto prohlížeči podporováno.")
       }
     } catch (err) {
+      // uživatel jen zavřel share dialog → v pohodě, neřešíme
       console.error("Share failed:", err)
     }
   }, [url, title])

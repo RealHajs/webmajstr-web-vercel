@@ -1,126 +1,28 @@
-// components/Hero.tsx
-"use client"
+export const dynamic = "force-dynamic";
 
-export const dynamic = "force-dynamic"
-
-import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Users } from "lucide-react"
-import { WebmajstrChat } from "@/components/WebmajstrChat"
+import { ArrowRight } from "lucide-react"
 
 export function Hero() {
-  const [titleText, setTitleText] = useState("")
-  const [subtitleText, setSubtitleText] = useState("")
-  const [isTypingTitle, setIsTypingTitle] = useState(true)
-  const [isTypingSubtitle, setIsTypingSubtitle] = useState(false)
-
-  useEffect(() => {
-    const title = "Váš digitální růst začíná u nás"
-    const subtitle =
-      "Tvorba a propagace webových stránek, reklama v rally a mnoho dalšího pouze u nás!"
-
-    let titleIndex = 0
-    let subtitleIndex = 0
-
-    const typeSubtitle = () => {
-      if (subtitleIndex <= subtitle.length) {
-        setSubtitleText(subtitle.slice(0, subtitleIndex))
-        subtitleIndex++
-        setTimeout(typeSubtitle, 25) // rychlejší animace pro podtitul
-      } else {
-        setIsTypingSubtitle(false)
-      }
-    }
-
-    const typeTitle = () => {
-      if (titleIndex <= title.length) {
-        setTitleText(title.slice(0, titleIndex))
-        titleIndex++
-        setTimeout(typeTitle, 70)
-      } else {
-        setIsTypingTitle(false)
-        setIsTypingSubtitle(true)
-        setTimeout(typeSubtitle, 300)
-      }
-    }
-
-    typeTitle()
-  }, [])
-
   return (
-    <section
-      className="
-        relative
-        bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
-        text-white
-        py-16 lg:py-24
-        min-h-[45vh]   /* výška hero sekce ≈ 45 % výšky okna – můžeš změnit např. na 40vh / 60vh */
-        overflow-hidden
-      "
-    >
-      {/* Video na pozadí */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <video
-          className="
-            absolute
-            left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-            min-w-full min-h-full
-            object-cover
-            opacity-15   /* průhlednost videa – menší číslo = méně viditelné */
-          "
-          src="/video/bacgkround_webmajstr.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-      </div>
-
-      {/* Fialový překryv – lehce ztmavený */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-purple-900/90 to-slate-900/95" />
-
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="mx-auto max-w-6xl text-center">
-          <h1 className="mb-6 text-4xl font-bold leading-tight lg:text-6xl">
-            {titleText}
-            {(isTypingTitle || isTypingSubtitle) && (
-              <span className="ml-1 inline-block h-[1em] w-[1px] animate-pulse bg-white align-middle" />
-            )}
-          </h1>
-
-          <p className="mb-8 min-h-[3rem] text-xl text-gray-300 lg:text-2xl">
-            {subtitleText}
+    <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white py-20 lg:py-40">
+      <div className="absolute inset-0 bg-black/20"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">Váš digitální růst začíná u nás</h1>
+          <p className="text-xl lg:text-2xl mb-8 text-gray-300">
+            Tvorba a propagace webových stránek, reklama v rally a mnoho dalšího pouze u nás !
           </p>
-
-          <div className="mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              size="lg"
-              className="bg-purple-600 px-8 py-4 text-lg hover:bg-purple-700"
-              asChild
-            >
-              <a href="/kontakt">
-                Kontaktujte nás
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/60 px-8 py-4 text-lg text-black hover:bg-white/10"
-              asChild
-            >
-              <a href="/spoluprace">
-                Naši klienti
-                <Users className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-          </div>
+          <br /><br /><br /><br />
+          <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-4" asChild>
+            <a href="/kontakt">
+              Kontaktujte nás
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
         </div>
       </div>
-
-      {/* Chat widget – fixed vpravo dole */}
-      <WebmajstrChat />
+      <div className="absolute bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-whitesmoke to-transparent"></div>
     </section>
   )
 }
