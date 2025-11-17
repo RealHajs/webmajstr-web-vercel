@@ -1,19 +1,8 @@
 export const dynamic = "force-dynamic"
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Calendar, User, ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
-
 import { getNews } from "@/lib/supabase"
-import { ShareButton } from "@/components/ShareButton"
+import { NewsList } from "../../components/NewsList"
 
 interface NewsArticle {
   id: number
@@ -50,83 +39,18 @@ export default async function NewsPage() {
       {/* News Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {news.map((article: NewsArticle, index: number) => {
-              const articleUrl = `/aktuality/${article.slug}`
+          <NewsList news={news as NewsArticle[]} />
 
-              return (
-                <Card
-                  key={article.id}
-                  className={`hover:shadow-lg transition-shadow ${
-                    index === 0 ? "lg:col-span-2" : ""
-                  }`}
-                >
-                  <Link href={articleUrl}>
-                    <div
-                      className={`aspect-video overflow-hidden rounded-t-lg ${
-                        index === 0 ? "aspect-[2/1]" : ""
-                      }`}
-                    >
-                      <img
-                        src={article.image_url || "/placeholder.svg"}
-                        alt={article.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  </Link>
-
-                  <CardHeader>
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          {article.published_at
-                            ? new Date(
-                                article.published_at
-                              ).toLocaleDateString("cs-CZ")
-                            : "Koncept"}
-                        </div>
-                        <div className="flex items-center">
-                          <User className="h-4 w-4 mr-2" />
-                          {article.author || "Webmajstr Team"}
-                        </div>
-                      </div>
-
-                      {/* Sdílení */}
-                      <ShareButton url={articleUrl} title={article.title} />
-                    </div>
-
-                    <CardTitle
-                      className={index === 0 ? "text-2xl" : "text-xl"}
-                    >
-                      {article.title}
-                    </CardTitle>
-                  </CardHeader>
-
-                  <CardContent>
-                    <CardDescription className="text-gray-600 mb-4">
-                      {article.excerpt}
-                    </CardDescription>
-
-                    {/* Číst více → odkaz na detail článku */}
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href={articleUrl}>
-                        Číst více
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-
-          {/* Load More – zatím jen statické tlačítko */}
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">
-              Načíst další aktuality
-            </Button>
-          </div>
+          {news.length > 0 && (
+            <div className="text-center mt-12">
+              <button
+                type="button"
+                className="inline-flex items-center px-6 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors text-sm font-medium"
+              >
+                Načíst další aktuality
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -147,7 +71,12 @@ export default async function NewsPage() {
                 placeholder="Váš e-mail"
                 className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
-              <Button size="lg">Přihlásit se</Button>
+              <button
+                type="button"
+                className="px-6 py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors"
+              >
+                Přihlásit se
+              </button>
             </div>
           </div>
         </div>
@@ -163,3 +92,4 @@ export const metadata: Metadata = {
   keywords:
     "aktuality, novinky, webmajstr, digitální marketing, AI SEO, rally reklama",
 }
+//test
