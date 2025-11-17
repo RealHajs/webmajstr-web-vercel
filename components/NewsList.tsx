@@ -121,7 +121,7 @@ export function NewsList({ news }: NewsListProps) {
                   href={articleUrl}
                   className="text-sm text-purple-600 hover:underline"
                 >
-                  Otevřít jako samostatnou stránku
+                  Otevřít na nové stránce
                 </Link>
               </div>
 
