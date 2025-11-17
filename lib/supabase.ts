@@ -110,6 +110,17 @@ export async function getNewsArticle(id: number) {
   return data
 }
 
+export async function getNewsBySlug(slug: string) {
+  const { data, error } = await supabase
+    .from("news")
+    .select("*")
+    .eq("slug", slug)
+    .single()
+
+  if (error) throw error
+  return data
+}
+
 export async function createNewsArticle(article: any) {
   const { data, error } = await supabase
     .from('news')
