@@ -8,25 +8,25 @@ export function References() {
     {
       name: "V-Home",
       logo: "https://www.v-home.cz/wp-content/uploads/2018/09/logo66.png",
-      country: "CZ",
+      country: "Česká republika",
       website: "https://v-home-bice.vercel.app/",
     },
     {
       name: "Motion Roleplay",
       logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/241bf5e4-8a60-4489-b380-c1c4943740c8%20(1).png",
-      country: "CZ/SK",
+      country: "Česko i Slovensko",
       website: "https://motion-roleplay.com/",
     },
     {
       name: "Marian Teplý",
       logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/zednik4-logo.png",
-      country: "CZ",
+      country: "Česká republika",
       website: "https://zednictvi-marian-teply.com/",
     },
     {
       name: "Hospůdka pod Rablinů",
       logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/hospudka-pod-rablinu-logo%20(1).png",
-      country: "CZ",
+      country: "Česká republika",
       website: "https://www.hospudkapodrablinu.cz/",
     },
   ]
