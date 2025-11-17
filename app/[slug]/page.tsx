@@ -12,7 +12,10 @@ import {
   Globe,
 } from "lucide-react"
 
-import { getPartners } from "@/lib/supabase"
+import { supabase } from "@/lib/supabase"
+
+export const dynamic = "force-dynamic" // stránka je plně dynamická
+export const revalidate = 0            // žádné SSG / ISR, vždy server-render
 
 interface Partner {
   id: number
@@ -31,21 +34,25 @@ interface Partner {
   updated_at?: string
 }
 
-// Načtení konkrétního partnera
+/* ---------- Načtení konkrétního partnera z Supabase ---------- */
+
 async function getPartner(slug: string): Promise<Partner | null> {
-  const partners = (await getPartners()) as Partner[]
-  return partners.find((p) => p.slug === slug && p.is_active) || null
+  const { data, error } = await supabase
+    .from("partners")
+    .select("*")
+    .eq("slug", slug)
+    .eq("is_active", true)
+    .single()
+
+  if (error) {
+    console.error("Chyba při načítání partnera:", error)
+    return null
+  }
+
+  return data as Partner
 }
 
-// Statické cesty pro všechny aktivní partnery
-export async function generateStaticParams() {
-  const partners = (await getPartners()) as Partner[]
-  return partners
-    .filter((partner) => partner.is_active)
-    .map((partner) => ({
-      slug: partner.slug,
-    }))
-}
+/* ---------- Ikony sociálních sítí ---------- */
 
 const getSocialIcon = (platform: string) => {
   switch (platform) {
@@ -66,6 +73,8 @@ const getSocialIcon = (platform: string) => {
   }
 }
 
+/* ---------- Stránka partnera ---------- */
+
 export default async function PartnerPage({
   params,
 }: {
@@ -76,12 +85,19 @@ export default async function PartnerPage({
 
   if (!partner) notFound()
 
-  // Parsování social_links
-  const socialLinks = partner.social_links
-    ? typeof partner.social_links === "string"
-      ? JSON.parse(partner.social_links)
-      : partner.social_links
-    : {}
+  // Bezpečné parsování social_links
+  let socialLinks: Record<string, string> = {}
+  if (partner.social_links) {
+    if (typeof partner.social_links === "string") {
+      try {
+        socialLinks = JSON.parse(partner.social_links)
+      } catch (e) {
+        console.error("Neplatný JSON v social_links:", e)
+      }
+    } else {
+      socialLinks = partner.social_links
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -227,11 +243,7 @@ export default async function PartnerPage({
               Napište nám a připravíme vám konkrétní návrh na míru.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                className="sm:flex-1"
-                asChild
-              >
+              <Button size="lg" className="sm:flex-1" asChild>
                 <a href="mailto:info@webmajstr.com">
                   Kontaktovat přes Webmajstr
                 </a>
@@ -261,7 +273,8 @@ export default async function PartnerPage({
   )
 }
 
-// Metadata pro App Router
+/* ---------- Metadata pro App Router ---------- */
+
 export async function generateMetadata({
   params,
 }: {
