@@ -55,7 +55,7 @@ export function Hero() {
         bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
         text-white
         py-16 lg:py-24
-        min-h-[55vh]
+        min-h-[60vh]
         overflow-hidden
       "
     >
@@ -67,7 +67,7 @@ export function Hero() {
             left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
             min-w-full min-h-full
             object-cover
-            opacity-40
+            opacity-45
           "
           src="/video/bacgkround_webmajstr.mp4"
           autoPlay
