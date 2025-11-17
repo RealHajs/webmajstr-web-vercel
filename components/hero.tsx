@@ -3,7 +3,7 @@
 
 export const dynamic = "force-dynamic"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Users } from "lucide-react"
 import { WebmajstrChat } from "@/components/WebmajstrChat"
@@ -13,6 +13,8 @@ export function Hero() {
   const [subtitleText, setSubtitleText] = useState("")
   const [isTypingTitle, setIsTypingTitle] = useState(true)
   const [isTypingSubtitle, setIsTypingSubtitle] = useState(false)
+
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     const title = "Váš digitální růst začíná u nás"
@@ -47,6 +49,29 @@ export function Hero() {
     typeTitle()
   }, [])
 
+  // Pokus o autoplay na mobilu i desktopu
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // jistota, že je ztlumené a inline (důležité pro mobilní autoplay)
+    video.muted = true
+    video.playsInline = true
+
+    const startVideo = async () => {
+      try {
+        const playPromise = video.play()
+        if (playPromise !== undefined) {
+          await playPromise
+        }
+      } catch {
+        // Prohlížeč autoplay zakázal – bohužel s tím nejde nic dělat.
+      }
+    }
+
+    startVideo()
+  }, [])
+
   return (
     <section
       className="
@@ -55,25 +80,27 @@ export function Hero() {
         bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900
         text-white
         py-16 lg:py-24
-        min-h-[60vh]
+        min-h-[55vh]
         overflow-hidden
       "
     >
       {/* Video na pozadí */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <video
+          ref={videoRef}
           className="
             absolute
             left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
             min-w-full min-h-full
             object-cover
-            opacity-45
+            opacity-20
           "
           src="/video/bacgkround_webmajstr.mp4"
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
         />
       </div>
 
