@@ -7,9 +7,9 @@ export function References() {
   const partners = [
     {
       name: "V-Home",
-      logo: "https://www.v-home.cz/wp-content/uploads/2018/09/logo66.png",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/logo-v-home-removebg-preview.png",
       country: "Česká republika",
-      website: "https://v-home-bice.vercel.app/",
+      website: "https://v-home.cz/",
     },
     {
       name: "Motion Roleplay",
