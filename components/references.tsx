@@ -13,7 +13,7 @@ export function References() {
     },
     {
       name: "Motion Roleplay",
-      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/241bf5e4-8a60-4489-b380-c1c4943740c8%20(1).png",
+      logo: "https://raw.githubusercontent.com/RealHajs/img-targon-cup/refs/heads/main/ezgif-323f7dbeab82f140.gif",
       country: "Česko i Slovensko",
       website: "https://motion-roleplay.com/",
     },
