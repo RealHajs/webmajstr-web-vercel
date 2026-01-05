@@ -54,36 +54,36 @@ export default function ServicesPage() {
         ],
       },
     },
-    {
-      icon: Megaphone,
-      title: "Kompletní propagace na internetu",
-      description:
-        "360° digitální marketingová strategie pro maximální online viditelnost.",
-      details: {
-        intro:
-          "Spojujeme web, sociální sítě, reklamu a SEO do jednoho funkčního systému.",
-        bullets: [
-          "Návrh kompletního funnelu – od prvního kontaktu až po opakovaný nákup.",
-          "Propojení kampaní napříč platformami, aby se vaši zákazníci s vaší značkou potkávali opakovaně.",
-          "Průběžná optimalizace podle dat – nejedeme podle pocitu, ale podle čísel.",
-        ],
-      },
-    },
-    {
-      icon: Search,
-      title: "SEO strategie s využitím AI",
-      description:
-        "Nejmodernější SEO optimalizace využívající umělou inteligenci pro lepší výsledky.",
-      details: {
-        intro:
-          "SEO děláme tak, aby mělo reálný dopad na návštěvnost a poptávky, ne jen lepší skóre v nástroji.",
-        bullets: [
-          "Analýza klíčových slov s využitím AI a tvorba obsahového plánu na míru vašemu oboru.",
-          "Technické SEO (rychlost, struktura, indexace, metadata) + on-page úpravy textů.",
-          "Pravidelné vyhodnocení pozic a návštěvnosti, včetně konkrétních doporučení co dál.",
-        ],
-      },
-    },
+    // {
+    //   icon: Megaphone,
+    //   title: "Kompletní propagace na internetu",
+    //   description:
+    //     "360° digitální marketingová strategie pro maximální online viditelnost.",
+    //   details: {
+    //     intro:
+    //       "Spojujeme web, sociální sítě, reklamu a SEO do jednoho funkčního systému.",
+    //     bullets: [
+    //       "Návrh kompletního funnelu – od prvního kontaktu až po opakovaný nákup.",
+    //       "Propojení kampaní napříč platformami, aby se vaši zákazníci s vaší značkou potkávali opakovaně.",
+    //       "Průběžná optimalizace podle dat – nejedeme podle pocitu, ale podle čísel.",
+    //     ],
+    //   },
+    // },
+    // {
+    //   icon: Search,
+    //   title: "SEO strategie s využitím AI",
+    //   description:
+    //     "Nejmodernější SEO optimalizace využívající umělou inteligenci pro lepší výsledky.",
+    //   details: {
+    //     intro:
+    //       "SEO děláme tak, aby mělo reálný dopad na návštěvnost a poptávky, ne jen lepší skóre v nástroji.",
+    //     bullets: [
+    //       "Analýza klíčových slov s využitím AI a tvorba obsahového plánu na míru vašemu oboru.",
+    //       "Technické SEO (rychlost, struktura, indexace, metadata) + on-page úpravy textů.",
+    //       "Pravidelné vyhodnocení pozic a návštěvnosti, včetně konkrétních doporučení co dál.",
+    //     ],
+    //   },
+    // },
     {
       icon: Palette,
       title: "2D grafika (corporate identity)",
@@ -114,51 +114,51 @@ export default function ServicesPage() {
         ],
       },
     },
-    {
-      icon: Gamepad2,
-      title: "Propagace v e-sportu",
-      description:
-        "Marketing přes profesionální e-sportové týmy a turnaje s globálním dosahem.",
-      details: {
-        intro:
-          "E-sport a gaming jsou prostředí, kde se pohybuje mladé a loajální publikum – ideální pro budování značky.",
-        bullets: [
-          "Umístění loga v rámci streamů, turnajů nebo týmových materiálů.",
-          "Spolupráce s influencery a hráči, kteří mají relevantní publikum pro váš produkt.",
-          "Možnost kombinace s klasickým digitálním marketingem pro maximální efekt.",
-        ],
-      },
-    },
-    {
-      icon: Server,
-      title: "Webhosting",
-      description:
-        "Spolehlivý a rychlý webhosting s 99.9% dostupností a technickou podporou.",
-      details: {
-        intro:
-          "Hosting řešíme tak, abyste se o něj nemuseli vůbec starat – jen aby vše běželo.",
-        bullets: [
-          "Pravidelné aktualizace, zálohy a monitoring dostupnosti.",
-          "Optimalizace výkonu pro rychlé načítání stránek i při vyšší návštěvnosti.",
-          "Technická podpora, když se cokoliv pokazí (nebo máte jen dotaz).",
-        ],
-      },
-    },
-    {
-      icon: LinkIcon,
-      title: "Správa domény",
-      description:
-        "Kompletní správa domén včetně registrace, prodloužení a DNS nastavení.",
-      details: {
-        intro:
-          "Doména je základ značky – zařídíme, aby byla bezpečně registrovaná a správně nastavená.",
-        bullets: [
-          "Registrace domén na vás, ne na anonymního poskytovatele.",
-          "DNS nastavení pro web, e-maily, externí služby a ověřování (např. pro mailing).",
-          "Hlídání expirace domén, abyste o ně nikdy nepřišli.",
-        ],
-      },
-    },
+    // {
+    //   icon: Gamepad2,
+    //   title: "Propagace v e-sportu",
+    //   description:
+    //     "Marketing přes profesionální e-sportové týmy a turnaje s globálním dosahem.",
+    //   details: {
+    //     intro:
+    //       "E-sport a gaming jsou prostředí, kde se pohybuje mladé a loajální publikum – ideální pro budování značky.",
+    //     bullets: [
+    //       "Umístění loga v rámci streamů, turnajů nebo týmových materiálů.",
+    //       "Spolupráce s influencery a hráči, kteří mají relevantní publikum pro váš produkt.",
+    //       "Možnost kombinace s klasickým digitálním marketingem pro maximální efekt.",
+    //     ],
+    //   },
+    // },
+    // {
+    //   icon: Server,
+    //   title: "Webhosting",
+    //   description:
+    //     "Spolehlivý a rychlý webhosting s 99.9% dostupností a technickou podporou.",
+    //   details: {
+    //     intro:
+    //       "Hosting řešíme tak, abyste se o něj nemuseli vůbec starat – jen aby vše běželo.",
+    //     bullets: [
+    //       "Pravidelné aktualizace, zálohy a monitoring dostupnosti.",
+    //       "Optimalizace výkonu pro rychlé načítání stránek i při vyšší návštěvnosti.",
+    //       "Technická podpora, když se cokoliv pokazí (nebo máte jen dotaz).",
+    //     ],
+    //   },
+    // },
+    // {
+    //   icon: LinkIcon,
+    //   title: "Správa domény",
+    //   description:
+    //     "Kompletní správa domén včetně registrace, prodloužení a DNS nastavení.",
+    //   details: {
+    //     intro:
+    //       "Doména je základ značky – zařídíme, aby byla bezpečně registrovaná a správně nastavená.",
+    //     bullets: [
+    //       "Registrace domén na vás, ne na anonymního poskytovatele.",
+    //       "DNS nastavení pro web, e-maily, externí služby a ověřování (např. pro mailing).",
+    //       "Hlídání expirace domén, abyste o ně nikdy nepřišli.",
+    //     ],
+    //   },
+    // },
   ]
 
   return (
