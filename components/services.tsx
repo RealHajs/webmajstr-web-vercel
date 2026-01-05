@@ -8,13 +8,13 @@ export function Services() {
   const services = [
     { icon: Globe, title: "Tvorba webových stránek", description: "ZDARMA v rámci balíčku" },
     { icon: Share2, title: "Správa sociálních sítí", description: "Od obsahu po analýzy – vše pro vaše sociální sítě" },
-    { icon: Megaphone, title: "Kompletní propagace na internetu", description: "360° digitální marketing" },
-    { icon: Search, title: "SEO strategie s využitím AI", description: "Nejmodernější optimalizace, nejsme 100 let za opicemi" },
+    // { icon: Megaphone, title: "Kompletní propagace na internetu", description: "360° digitální marketing" },
+    // { icon: Search, title: "SEO strategie s využitím AI", description: "Nejmodernější optimalizace, nejsme 100 let za opicemi" },
     { icon: Palette, title: "2D grafika", description: "Corporate identity & design (loga, bannery atd..)" },
     { icon: Car, title: "Reklama na RALLY autě", description: "Vaše značka před tisíci fanoušky, ZDARMA v rámci balíčku" },
-    { icon: Gamepad2, title: "Propagace v e-sportu", description: "Jsme vidět tam, kde se hraje – na turnajích i online" },
-    { icon: Server, title: "Webhosting", description: "Spolehlivý prostor pro váš web, ZDARMA v rámci balíčku" },
-    { icon: LinkIcon, title: "Správa domény", description: "Nejen doména, ale i e-maily na míru jako součást služby" },
+    // { icon: Gamepad2, title: "Propagace v e-sportu", description: "Jsme vidět tam, kde se hraje – na turnajích i online" },
+    // { icon: Server, title: "Webhosting", description: "Spolehlivý prostor pro váš web, ZDARMA v rámci balíčku" },
+    // { icon: LinkIcon, title: "Správa domény", description: "Nejen doména, ale i e-maily na míru jako součást služby" },
   ]
 
   return (
